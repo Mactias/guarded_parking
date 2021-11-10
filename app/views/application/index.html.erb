@@ -1,0 +1,22 @@
+<% content_for :title do %>
+ - Index
+<% end %>
+
+<div>
+  <h1>Guarded Parking</h1>
+  <table id="parking">
+    <tr>
+      <th>Name</th>
+      <th>Vehicle Type</th>
+      <th>Price Per Day</th>
+    </tr>
+
+    <% @parking_spaces.each do |parking| %>
+    <tr>
+      <td><%= link_to parking.name, controller: 'parking_spaces', action: 'show', id: parking %></td>
+      <td><%= parking.vehicle %></td>
+      <td><%= parking.price %> zł</td>
+    </tr>
+    <% end %>
+  </table>
+</div>

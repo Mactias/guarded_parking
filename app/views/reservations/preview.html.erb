@@ -1,0 +1,41 @@
+<div>
+  <%= link_to "index", root_path %><br>
+  <%= link_to "back", @parking %>
+</div>
+<div>
+  <h1>
+    Do You really want to reserve Parking: <%= @parking.name %> in <%= @reservation.start_date %> - <%= @reservation.end_date %> day(s)?<br>
+  </h1>
+  <h2>
+    If so click 'make reservation' button and make a payment to this <strong>account: 12-1140-XXXX-XXXX-XXXX-XXXX.</strong><br>
+    Price: <%= @price %> zł<br>
+    If not click 'back' or close this window.
+  </h2>
+
+</div>
+<div>
+  <%= form_with model: [@parking, @reservation] do |form| %>
+    <p> 
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+    <p>
+      <%= form.label :pesel %><br>
+      <%= form.text_field :pesel %>
+    </p>
+    <p>
+      <%= form.label :license_plate %><br>
+      <%= form.text_field :license_plate %>
+    </p>
+    <p>
+      <%= form.label :start_date %><br>
+      <%= form.text_field :start_date %>
+    </p>
+    <p>
+      <%= form.label :end_date %><br>
+      <%= form.text_field :end_date %>
+    </p>
+  <%= form.submit "make reservation" %>
+<% end %>
+</div>
+

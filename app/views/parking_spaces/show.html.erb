@@ -1,0 +1,68 @@
+<% content_for :title do %>
+  - <%= @parking.name %>
+<% end %>
+
+<%= link_to 'back to index', controller: 'application', action: 'index' %>
+<div>
+  <h1>
+    Parking Space Name: <%= @parking.name %><br>
+  </h1>
+  <h2>
+    For Vehicle Type: <%= @parking.vehicle %><br>
+    Price Per Day: <%= @parking.price %> zł
+  </h2>
+</div>
+
+<div>
+  <h3>Reserved Dates</h3>
+  <ul>
+    <% @parking.reservations.each do |reservation| %>
+      <% unless reservation.id.nil? %>
+        <li><%= reservation.start_date %> - <%= reservation.end_date %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+<%= form_with model: [ @parking, @reservation ] do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% @reservation.errors.full_messages_for(:name).each do |message| %>
+      <div class="errors"><%= message %></div>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label :pesel %><br>
+    <%= form.text_field :pesel %>
+    <% @reservation.errors.full_messages_for(:pesel).each do |message| %>
+      <div class="errors"><%= message %></div>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label :license_plate %><br>
+    <%= form.text_field :license_plate %>
+    <% @reservation.errors.full_messages_for(:license_plate).each do |message| %>
+      <div class="errors"><%= message %></div>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label :start_date %><br>
+    <%= form.date_field :start_date %>
+    <% @reservation.errors.full_messages_for(:start_date).each do |message| %>
+      <div class="errors"><%= message %></div>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label :end_date %><br>
+    <%= form.date_field :end_date %>
+    <% @reservation.errors.full_messages_for(:end_date).each do |message| %>
+      <div class="errors"><%= message %></div>
+    <% end %>
+  </p>
+  <p>
+    <%= form.submit "Preview", :name => 'preview' %>
+  </p>
+<% end %>
+</div>
