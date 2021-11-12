@@ -6,5 +6,6 @@ class ParkingSpacesController < ApplicationController
   def show
     @parking = ParkingSpace.find(params[:id])
     @reservation = @parking.reservations.build
+    @ress_ordered = @parking.reservations.order(:start_date)
   end
 end

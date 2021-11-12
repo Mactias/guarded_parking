@@ -16,7 +16,7 @@
 <div>
   <h3>Reserved Dates</h3>
   <ul>
-    <% @parking.reservations.each do |reservation| %>
+    <% @ress_ordered.each do |reservation| %>
       <% unless reservation.id.nil? %>
         <li><%= reservation.start_date %> - <%= reservation.end_date %></li>
       <% end %>
